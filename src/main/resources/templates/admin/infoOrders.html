@@ -9,6 +9,15 @@
   <button type="submit">Назад</button>
 </form>
 <h2>Список заказов магазина "Время читать"</h2>
+
+<h3>Поиск заказов по последним 4 буквам/цифрам</h3>
+<form th:method="POST" th:action="@{/admin/orders/search}">
+  <fieldset>
+    <input type="text" minlength="4" maxlength="4" placeholder="Введите 4 последние буквы/цифры номера заказа" id="last_symbols_search" name="last_symbols_search" th:value="*{last_symbols_search}">
+    <input type="submit" value="Найти">
+  </fieldset>
+</form>
+
 <div th:each="order : ${orders}">
   <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
   <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MM-yyyy')}"></p>

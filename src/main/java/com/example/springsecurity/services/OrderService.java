@@ -46,4 +46,8 @@ public class OrderService {
     public void deleteById(int id){
         orderRepository.deleteById(id);
     }
+
+    public List<Order> findByLastSymbols(String symbols){
+        return orderRepository.findByNumberByLastFourSymbols(symbols);
+    }
 }

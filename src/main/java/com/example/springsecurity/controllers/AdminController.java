@@ -160,4 +160,11 @@ public class AdminController {
             product.addImageToProduct(image);
         }
     }
+
+    @PostMapping("/admin/orders/search")
+    public String searchOrdersByNumber(@RequestParam("last_symbols_search") String symbols, Model model){
+        model.addAttribute("last_symbols_search", symbols);
+        model.addAttribute("orders", orderService.findByLastSymbols(symbols));
+        return "admin/infoOrders";
+    }
 }

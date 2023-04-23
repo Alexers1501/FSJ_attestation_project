@@ -30,12 +30,6 @@
             <input type="radio" th:id="${category.getDbName()}" name="contract" th:value="${category.getDbName()}">
             <label th:for="${category.getDbName()}" th:text="${category.getName()}"></label>
         </div>
-<!--        <input type="radio" id="furniture" name="contract" value="furniture">-->
-<!--        <label for="furniture">Мебель</label>-->
-<!--        <input type="radio" id="clothes" name="contract" value="clothes">-->
-<!--        <label for="clothes">Одежда</label>-->
-<!--        <input type="radio" id="appliances" name="contract" value="appliances">-->
-<!--        <label for="appliances">Бытовая техника</label>-->
         <br>
         <br>
         <input type="submit" value="Найти">
@@ -47,6 +41,7 @@
     <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="300px">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <p th:text="'Цена: ' + ${product.getPrice()}"/>
     <hr>
 </div>
 

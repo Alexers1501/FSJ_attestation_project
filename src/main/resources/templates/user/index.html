@@ -16,7 +16,7 @@
     <button type="submit">Заказы</button>
 </form>
 <h3>Сортировка, поиск, фильтрация</h3>
-<form th:method="post" th:action="@{personal_acount/product/search}">
+<form th:method="post" th:action="@{/personal_account/product/search}">
     <fieldset>
         <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
         <label for="search">Писк по наименованию</label>
@@ -53,6 +53,8 @@
     <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="300px">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <p th:text="'Цена: ' + ${product.getPrice()}"/>
+    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
     <hr>
 </div>
 <h3>Доступные товары: </h3>
