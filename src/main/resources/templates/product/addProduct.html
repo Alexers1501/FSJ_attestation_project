@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление книги (товара)</title>
+</head>
+<body>
+<h3>Добавление книги или другого товара</h3>
+<form th:method="POST" th:action="@{/admin/product/add}" th:object="${product}" enctype="multipart/form-data">
+    <label for="title">Введите наименование товара</label>
+    <input type="text" th:field="*{title}" placeholder="Наименование" id="title"/>
+    <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    <br>
+
+    <label for="description">Введите описание товара</label>
+    <textarea th:field="*{description}" placeholder="Описание" id="description"></textarea>
+    <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+    <br>
+
+    <label for="price">Введите цену товара</label>
+    <input type="number" th:field="*{price}" min="1" step=0.00 placeholder="Цена" id="price"/>
+    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    <br>
+
+    <label for="author">Введите ФИО автора</label>
+    <input type="text" th:field="*{author}" min="1" step=0.00 placeholder="Автор" id="author"/>
+    <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
+    <br>
+
+    <label for="publisher">Введите ФИО автора</label>
+    <input type="text" th:field="*{publisher}" placeholder="Издательство" id="publisher"/>
+    <div style="color: red" th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"></div>
+    <br>
+
+    <label for="category">Выберите категорию товара</label>
+    <select name="category" th:field="*{category}" id="category">
+        <div th:each="element: ${category}">
+            <option th:text="${element.getName()}" th:value="${element.getId()}"></option>
+        </div>
+    </select>
+    <br>
+    <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
+    <br>
+    <label for="seller">Введите данные о продавце</label>
+    <textarea th:field="*{seller}" placeholder="Продавец" id="seller"></textarea>
+    <br>
+    <p style="color: red">Вы можете доавить до 5 фото. Первая фотография не может быть пустой, так как она будет являться главной при выводе карточки товара</p>
+    <input type="file" name="file_one">
+    <input type="file" name="file_two">
+    <input type="file" name="file_three">
+    <input type="file" name="file_four">
+    <input type="file" name="file_five">
+    <br>
+    <br>
+    <input type="submit" value="Добавить">
+</form>
+</body>
+</html>

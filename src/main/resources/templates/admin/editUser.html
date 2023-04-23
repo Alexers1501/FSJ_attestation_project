@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+</head>
+<body>
+<form th:action="@{/admin}">
+    <button type="submit">Назад</button>
+</form>
+
+<h2>Редактирование пользователя"</h2>
+<h3 th:text="'Пользователь № ' + ${person.getId()}"></h3>
+<p th:text="'Login: ' + ${person.getLogin()}"></p>
+<p th:text="'Роль: ' + ${person.getRole()}"></p>
+<form th:method="POST" th:action="@{/admin/users/edit/{id}(id=${person.getId()})}" th:object="${person}">
+    <select name="role" id="role" th:field="*{role}">
+        <div th:each="element : ${roles}">
+            <option th:text="${element.name()}" th:value="${element.name()}"></option>
+        </div>
+    </select>
+    <input type="submit" value="Сохранить">
+</form>
+</body>
+</html>

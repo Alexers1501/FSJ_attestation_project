@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Информация о заказах</title>
+</head>
+<body>
+<form th:action="@{/admin}">
+  <button type="submit">Назад</button>
+</form>
+<h2>Список заказов магазина "Время читать"</h2>
+<div th:each="order : ${orders}">
+  <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
+  <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MM-yyyy')}"></p>
+  <p th:text="'Статус: ' + ${order.getStatus()}"></p>
+  <p th:text="'Товар: ' + ${order.getProduct().getTitle()}"></p>
+  <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
+  <p th:text="'Количество (в ед.): ' + ${order.getCount()}"></p>
+  <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+  <hr>
+</div>
+</body>
+</html>
