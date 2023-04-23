@@ -45,6 +45,12 @@ public class ProductController {
         List<Category> categories = categoryService.getAllCategory();
         model.addAttribute("categories", categories);
 
+        System.out.println("Title=" + search);
+        System.out.println("Ot=" + ot);
+        System.out.println("Do=" + Do);
+        System.out.println("Price=" + price);
+        System.out.println("Contract=" + contract);
+
 
         if(!ot.isEmpty() && !Do.isEmpty()){
             if(!price.isEmpty()){
@@ -81,6 +87,7 @@ public class ProductController {
             model.addAttribute("search_product", productRepository.findByTitleContainingIgnoreCase(search));
         }
 
+        model.addAttribute("price", price);
         model.addAttribute("value_search", search);
         model.addAttribute("value_price_ot", ot);
         model.addAttribute("value_price_do", Do);

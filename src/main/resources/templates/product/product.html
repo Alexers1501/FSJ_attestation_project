@@ -20,14 +20,14 @@
         <br>
         <br>
         <div>
-            <input type="radio" id="ascending_price" name="price" sorted_by_ascending_price>
-            <label for="ascending_price">Отсортировать по возрастанию цены</label>
-            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
-            <label for="descending_price">Отсортировать по убыванию цены</label>
+            <input type="radio" id="sorted_by_ascending_price" name="price" value="sorted_by_ascending_price" checked>
+            <label for="sorted_by_ascending_price">Отсортировать по возрастанию цены</label>
+            <input type="radio" id="sorted_by_descending_price" name="price" value="sorted_by_descending_price">
+            <label for="sorted_by_descending_price">Отсортировать по убыванию цены</label>
         </div>
         <p>Категория товаров: </p>
         <div th:each="category : ${categories}">
-            <input type="radio" th:id="${category.getDbName()}" name="contract" th:value="${category.getDbName()}">
+            <input type="radio"  th:id="${category.getDbName()}" name="contract" th:value="${category.getDbName()}">
             <label th:for="${category.getDbName()}" th:text="${category.getName()}"></label>
         </div>
         <br>
