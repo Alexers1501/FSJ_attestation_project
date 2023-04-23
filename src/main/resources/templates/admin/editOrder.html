@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактрование заказа</title>
+</head>
+<body>
+<form th:action="@{/admin}">
+  <button type="submit">Назад</button>
+</form>
+<h2>Редактирование заказа</h2>
+<div>
+  <form th:method="POST" th:action="@{/admin/orders/edit/{id}(id=${order.getId()})}" th:object="${order}">
+    <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MM-yyyy')}"></p>
+      <select name="status" id="status" th:field="*{status}">
+        <div th:each="element : ${status}">
+          <option th:text="${element.name()}" th:value="${element.name()}"></option>
+        </div>
+      </select>
+
+    <p th:text="'Товар: ' + ${order.getProduct().getTitle()}"></p>
+    <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
+    <p th:text="'Количество (в ед.): ' + ${order.getCount()}"></p>
+  <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+    <input type="submit" value="Сохранить">
+  </form>
+</div>
+</body>
+</html>

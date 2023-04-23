@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -23,6 +24,11 @@ public class OrderService {
 
     public List<Order> findByPerson(Person person) {
         return orderRepository.findByPerson(person);
+    }
+
+    public Order findById(int id){
+        Optional<Order> order = orderRepository.findById(id);
+        return order.orElse(null);
     }
 
     public List<Order> findAll() {

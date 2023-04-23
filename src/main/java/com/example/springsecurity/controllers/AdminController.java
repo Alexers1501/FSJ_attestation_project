@@ -1,10 +1,8 @@
 package com.example.springsecurity.controllers;
 
 import com.example.springsecurity.enums.Role;
-import com.example.springsecurity.models.Category;
-import com.example.springsecurity.models.Image;
-import com.example.springsecurity.models.Person;
-import com.example.springsecurity.models.Product;
+import com.example.springsecurity.enums.Status;
+import com.example.springsecurity.models.*;
 import com.example.springsecurity.services.CategoryService;
 import com.example.springsecurity.services.OrderService;
 import com.example.springsecurity.services.PersonService;
@@ -130,6 +128,21 @@ public class AdminController {
         db_person.setRole(person.getRole());
         personService.updatePerson(id, db_person);
         return "redirect:/admin/users/info";
+    }
+
+    @GetMapping ("/admin/orders/edit/{id}")
+    public String editOrderInfo(Model model, @PathVariable("id") int id){
+        model.addAttribute("order", orderService.findById(id));
+        model.addAttribute("status", Status.values());
+        return "admin/editOrder";
+    }
+    //данный метод изменяет только роль пользователя
+    @PostMapping ("/admin/orders/edit/{id}")
+    public String editOrderInfo(@ModelAttribute("order") Order order, @PathVariable("id") int id){
+        Order db_order = orderService.findById(id);
+        db_order.setStatus(order.getStatus());
+        orderService.updateOrder(id, db_order);
+        return "redirect:/admin/orders/info";
     }
 
     private void addImageToProduct(Product product, MultipartFile file) throws IOException {

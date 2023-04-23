@@ -17,6 +17,7 @@
   <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
   <p th:text="'Количество (в ед.): ' + ${order.getCount()}"></p>
   <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+  <a th:href="@{/admin/orders/edit/{id}(id=${order.getId()})}">Редактировать</a>
   <hr>
 </div>
 </body>

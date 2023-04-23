@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Order> findByPerson(Person person);
+
+
+    List<Order> findByNumberByLastFourSymbols(String symbols);
 }
