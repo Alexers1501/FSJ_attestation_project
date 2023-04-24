@@ -3,23 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактирование пользователя</title>
-</head>
-<body>
-<form th:action="@{/admin}">
-    <button type="submit">Назад</button>
-</form>
 
-<h2>Редактирование пользователя"</h2>
-<h3 th:text="'Пользователь № ' + ${person.getId()}"></h3>
-<p th:text="'Login: ' + ${person.getLogin()}"></p>
-<p th:text="'Роль: ' + ${person.getRole()}"></p>
-<form th:method="POST" th:action="@{/admin/users/edit/{id}(id=${person.getId()})}" th:object="${person}">
-    <select name="role" id="role" th:field="*{role}">
-        <div th:each="element : ${roles}">
-            <option th:text="${element.name()}" th:value="${element.name()}"></option>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src=
+                    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity=
+                    "sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous">
+    </script>
+
+    <link href="/css/navbar.css" rel="stylesheet">
+
+</head>
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <h2 class="navbar-brand" >Время читать</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/admin">Личный кабинет</a>
+                    <a class="nav-link active" aria-current="page" href="/admin/product/add">Добавить товар</a>
+                    <a class="nav-link active" href="/admin/users/info">Список пользователей</a>
+                    <a class="nav-link active" href="/admin/orders/info">Список заказов в магазине</a>
+                    <form class="nav-link" method="post" th:action="@{/logout}">
+                        <button class="btn btn-primary" type="submit">Выйти из личного кабинета</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </select>
-    <input type="submit" value="Сохранить">
-</form>
+    </nav>
+
+</header>
+
+<main>
+    <h2>Редактирование пользователя"</h2>
+    <h3 th:text="'Пользователь № ' + ${person.getId()}"></h3>
+    <p th:text="'Login: ' + ${person.getLogin()}"></p>
+    <p th:text="'Роль: ' + ${person.getRole()}"></p>
+    <form th:method="POST" th:action="@{/admin/users/edit/{id}(id=${person.getId()})}" th:object="${person}">
+        <select name="role" id="role" th:field="*{role}">
+            <div th:each="element : ${roles}">
+                <option th:text="${element.name()}" th:value="${element.name()}"></option>
+            </div>
+        </select>
+        <input type="submit" value="Сохранить">
+    </form>
+</main>
 </body>
 </html>
