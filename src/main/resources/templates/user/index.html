@@ -14,6 +14,7 @@
     </script>
 
     <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/cardContainer.css" rel="stylesheet">
 
 </head>
 <body>
@@ -52,7 +53,7 @@
         </a>
     </p>
     <div class="collapse" id="collapseExample">
-        <div class="card card-body">
+        <div>
             <h3>Сортировка, поиск, фильтрация</h3>
             <form th:method="post" th:action="@{/personal_account/product/search}">
                 <fieldset>
@@ -87,22 +88,47 @@
     </div>
     <hr>
     <h3>Результат поиска, сортировки и фильтрации</h3>
-    <div th:each="product : ${search_product}">
-        <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="300px">
-        <br>
-        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${product.getPrice()}"/>
-        <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
-        <hr>
+    <div class="products">
+        <div class="flex-card-container">
+            <div class="card" th:each="product : ${search_product}">
+                <div class="my-card-header">
+                    <div class="my-div">
+                        <h5 ><a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a></h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="200px">
+                    <br>
+
+                </div>
+                <div class="my-card-footer">
+                    <p  th:text="'Цена: ' + ${product.getPrice()}"/>
+                    <a class="btn btn-primary"  th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
+                </div>
+            </div>
+        </div>
     </div>
+
     <h3>Доступные товары: </h3>
-    <div th:each="product : ${products}">
-        <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="300px">
-        <br>
-        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${product.getPrice()}"/>
-        <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
-        <hr>
+    <div class="products">
+        <div class="flex-card-container">
+            <div class="card" th:each="product : ${products}">
+                <div class="my-card-header">
+                    <div class="my-div">
+                        <h5 ><a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a></h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="200px">
+                    <br>
+
+                </div>
+                <div class="my-card-footer">
+                    <p  th:text="'Цена: ' + ${product.getPrice()}"/>
+                    <a class="btn btn-primary"  th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 </body>
