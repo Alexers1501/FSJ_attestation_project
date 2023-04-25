@@ -14,6 +14,7 @@
     </script>
 
     <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/cartCards.css" rel="stylesheet">
 
 </head>
 <body>
@@ -43,16 +44,25 @@
 
 <main>
     <h3>Корзина товаров</h3>
-    <div th:each="product : ${cart_product}">
-        <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="300px">
-        <br>
-        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${product.getPrice()}"/>
-        <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалть из корзины</a>
-        <hr>
+    <div class="card" th:each="product : ${cart_product}">
+        <div class="my-card-header">
+            <div class="my-div">
+                <h5 ><a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a></h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <img th:src="'/img/' + ${product.getImageList[0].getFileName()}" width="200px">
+            <br>
+
+        </div>
+        <div class="my-card-footer">
+            <p  th:text="'Цена: ' + ${product.getPrice()}"/>
+            <a class="btn btn-primary" th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалть из корзины</a>
+        </div>
     </div>
+
     <h3 th:text="'Итоговая цена: ' + ${price}"></h3>
-    <a href="/order/create">Оформить заказ</a>
+    <a class="btn btn-primary" href="/order/create">Оформить заказ</a>
 </main>
 </body>
 </html>
