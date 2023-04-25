@@ -1,0 +1,52 @@
+.products{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.flex-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.flex-card-container .card{
+    margin: 10px 10px;
+    flex: 0 0 20%;
+}
+
+.card{
+    display: inline-grid;
+    grid-template-rows: 20% 70% 10%;
+    text-align: center;
+}
+
+.my-card-header{
+    width: 1fr;
+    height: 1fr;
+    background-color: bisque;
+}
+.my-card-header div{
+    width: 1fr;
+    height: 1fr;
+    margin: 0.5em 0;
+}
+.my-card-header a{
+    font-size: 18px;
+}
+
+.card-body{
+    overflow: hidden;
+}
+.card-body img{
+    width: 90%;
+}
+
+@media all and (max-width: 700px){
+    .flex-card-container .card{
+        margin: 5px 5px;
+        flex: 0 0 40%;
+    }
+    .my-card-header a{
+        font-size: 14px;
+    }
+}
