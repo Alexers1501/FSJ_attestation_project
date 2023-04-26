@@ -1,7 +1,8 @@
 .order-card{
-    border: 2px solid cornflowerblue;
+    border: 3px solid burlywood;
     border-radius: 50px;
     margin: 20px;
     padding: 20px;
     max-width: 800px;
+    background-color: cornsilk;
 }
