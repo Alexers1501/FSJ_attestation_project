@@ -66,7 +66,7 @@
     <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
     <br>
     <br>
-    <label for="publisher">Введите ФИО автора</label>
+    <label for="publisher">Введите название издательства</label>
     <input type="text" th:field="*{publisher}" placeholder="Издательство" id="publisher"/>
     <div style="color: red" th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"></div>
     <br>
@@ -80,7 +80,7 @@
     <br>
     <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
     <br>
-    <label for="seller">Ввдте данные о продавце</label>
+    <label for="seller">Введите данные о продавце</label>
     <textarea th:field="*{seller}" placeholder="Продавец" id="seller"></textarea>
     <br>
   <!--  <p style="color: red">Вы можете доавить до 5 фото. Первая фотография не может быть пустой, так как она будет являться главной при выводе карточки товара</p>-->
