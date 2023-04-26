@@ -13,7 +13,9 @@
           crossorigin="anonymous">
   </script>
 
+  <link href="/css/main.css" rel="stylesheet">
   <link href="/css/navbar.css" rel="stylesheet">
+  <link href="/css/orderCards.css" rel="stylesheet">
 
 </head>
 <body>
@@ -46,6 +48,7 @@
   <h2>Список заказов магазина "Время читать"</h2>
 
   <h3>Поиск заказов по последним 4 буквам/цифрам</h3>
+  <br>
   <form th:method="POST" th:action="@{/admin/orders/search}">
     <fieldset>
       <input type="text" minlength="4" maxlength="4" placeholder="Введите 4 последние буквы/цифры номера заказа" id="last_symbols_search" name="last_symbols_search" th:value="*{last_symbols_search}">
@@ -53,16 +56,18 @@
     </fieldset>
   </form>
 
-  <div th:each="order : ${orders}">
-    <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
-    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MM-yyyy')}"></p>
-    <p th:text="'Статус: ' + ${order.getStatus()}"></p>
-    <p th:text="'Товар: ' + ${order.getProduct().getTitle()}"></p>
-    <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
-    <p th:text="'Количество (в ед.): ' + ${order.getCount()}"></p>
-    <p th:text="'Цена: ' + ${order.getPrice()}"></p>
-    <a th:href="@{/admin/orders/edit/{id}(id=${order.getId()})}">Редактировать</a>
-    <hr>
+  <div class="flex-div">
+    <div class="order-card" th:each="order : ${orders}">
+      <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
+      <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MM-yyyy')}"></p>
+      <p th:text="'Статус: ' + ${order.getStatus()}"></p>
+      <p th:text="'Товар: ' + ${order.getProduct().getTitle()}"></p>
+      <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
+      <p th:text="'Количество (в ед.): ' + ${order.getCount()}"></p>
+      <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+      <a th:href="@{/admin/orders/edit/{id}(id=${order.getId()})}">Редактировать</a>
+      <hr>
+    </div>
   </div>
 </main>
 </body>

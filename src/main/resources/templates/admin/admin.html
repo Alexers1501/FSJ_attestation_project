@@ -13,7 +13,10 @@
             crossorigin="anonymous">
     </script>
 
+    <link href="/css/main.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/orderCards.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -45,16 +48,18 @@
 <main>
     <h3>Личный кабинет администратора</h3>
     <hr>
-    <div th:each="product: ${products}">
-        <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-        <p th:text="'Описание: ' + ${product.getDescription()}"></p>
-        <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-        <p th:text="'Склад: ' + ${product.getAuthor()}"></p>
-        <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
-        <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
-        <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактирование товара</a>
-        <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удаление товара</a>
-        <hr>
+    <div class="flex-div">
+        <div class="order-card" th:each="product: ${products}">
+            <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+            <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+            <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+            <p th:text="'Склад: ' + ${product.getAuthor()}"></p>
+            <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+            <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+            <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактирование товара</a>
+            <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удаление товара</a>
+            <hr>
+        </div>
     </div>
 </main>
 </body>

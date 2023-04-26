@@ -13,7 +13,9 @@
             crossorigin="anonymous">
     </script>
 
+    <link href="/css/main.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/userCards.css" rel="stylesheet">
 
 </head>
 <body>
@@ -44,12 +46,14 @@
 
 <main>
     <h2>Список зарегистрированных пользователей книжного магазина "Время читать"</h2>
-    <div th:each="person : ${users}">
-      <h3 th:text="'Пользователь № ' + ${person.getId()}"></h3>
-      <p th:text="'Login: ' + ${person.getLogin()}"></p>
-      <p th:text="'Роль: ' + ${person.getRole()}"></p>
-        <a th:href="@{/admin/users/edit/{id}(id=${person.getId()})}">Редактировать</a>
-      <hr>
+    <div class="flex-div">
+        <div class="user-card" th:each="person : ${users}">
+          <h3 th:text="'Пользователь № ' + ${person.getId()}"></h3>
+          <p th:text="'Login: ' + ${person.getLogin()}"></p>
+          <p th:text="'Роль: ' + ${person.getRole()}"></p>
+            <a th:href="@{/admin/users/edit/{id}(id=${person.getId()})}">Редактировать</a>
+          <hr>
+        </div>
     </div>
 </main>
 </body>

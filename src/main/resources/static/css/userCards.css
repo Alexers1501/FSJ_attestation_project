@@ -1,0 +1,7 @@
+.user-card{
+    border: 2px solid darkorange;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    max-width: 800px;
+}
